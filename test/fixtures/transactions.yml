@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from_address: MyString
+  to_address: MyString
+  amount: 
+  nonce: 1
+  uuid: 
+
+two:
+  from_address: MyString
+  to_address: MyString
+  amount: 
+  nonce: 1
+  uuid: 
