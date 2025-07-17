@@ -13,22 +13,9 @@ class Api::TransactionsController < ApplicationController
     decoded_message = Base64.decode64(message_base64)
     sender_public_key, destination_address, amount_str, nonce_str = decoded_message.split(';')
     
-    # --- LÓGICA DE DIRECCIÓN MOVIDA AQUÍ ---
-    # Creamos una instancia explícita del hash SHA3 de 256 bits.
-    #sha3_256 = Digest::SHA3.new(256)
-    #public_key_bytes = [sender_public_key].pack('H*')
-    #sender_address = sha3_256.hexdigest(public_key_bytes)
-    # --- FIN LÓGICA MOVIDA ---
-
-    # --- NUEVA LÓGICA DE DIRECCIÓN CON LA GEMA 'sha3' ---
+  
 sender_address = SHA3::Digest.new(:sha3_256).hexdigest([sender_public_key].pack('H*'))
-# --- FIN NUEVA LÓGICA --- 
-    # ADVERTENCIA: La verificación de la firma criptográfica está desactivada para pruebas.
-    # unless CryptoHandler.verify_signature(sender_public_key, signature_base64, decoded_message)
-    #   render json: { error: 'Firma inválida.' }, status: :unprocessable_entity
-    #   return
-    # end
-    puts "ADVERTENCIA: La verificación de la firma criptográfica está desactivada para pruebas."
+
 
     amount = amount_str.to_i
     nonce = nonce_str.to_i
@@ -72,19 +59,19 @@ sender_address = SHA3::Digest.new(:sha3_256).hexdigest([sender_public_key].pack(
   end
 
    def show
-    # Busca la transacción en la base de datos usando el uuid de la URL
+  
     @transaction = Transaction.find_by(uuid: params[:uuid])
     
-    # Si la encuentra, la devuelve como JSON
+    
     if @transaction
       render json: {
         uuid: @transaction.uuid,
         from: @transaction.from_address,
         to: @transaction.to_address,
-        amount: @transaction.amount / 1_000_000.0, # Convertimos a la unidad normal
+        amount: @transaction.amount / 1_000_000.0, 
         nonce: @transaction.nonce
       }, status: :ok
-    # Si no la encuentra, devuelve un error 404
+    
     else
       render json: { error: 'Transacción no encontrada.' }, status: :not_found
     end
