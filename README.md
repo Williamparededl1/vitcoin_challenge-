@@ -1,6 +1,6 @@
 # Reto Técnico VitCoin 🔱
 
-Esta es la implementación del reto técnico para Vit-Wallet, una API en Rails para un sistema transaccional centralizado basado en criptografía.
+Esta es la implementación del reto técnico para Vita-Wallet, una API en Rails para un sistema transaccional centralizado basado en criptografía.
 
 ## Versiones Requeridas
 
