@@ -1,24 +1,42 @@
-# README
+# Reto Técnico VitCoin 🔱
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Esta es la implementación del reto técnico para Vit-Wallet, una API en Rails para un sistema transaccional centralizado basado en criptografía.
 
-Things you may want to cover:
+## Versiones Requeridas
 
-* Ruby version
+* Ruby `3.2.2`
+* PostgreSQL `16.x`
 
-* System dependencies
+## Instalación y Configuración
 
-* Configuration
+1.  Clona el repositorio.
+2.  Asegúrate de tener Ruby 3.2.2 y PostgreSQL instalado y corriendo.
+3.  Instala las dependencias del proyecto:
+    ```bash
+    bundle install
+    ```
+4.  Crea y configura la base de datos:
+    ```bash
+    rails db:create
+    rails db:migrate
+    ```
 
-* Database creation
+## Cómo Correr las Pruebas
 
-* Database initialization
+Para ejecutar la suite de pruebas completa, usa RSpec:
+```bash
+bundle exec rspec
+```
 
-* How to run the test suite
+## Cómo Iniciar el Servidor
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+rails server
+```
+La API estará disponible en `http://localhost:3000`.
 
-* Deployment instructions
+## Endpoints de la API
 
-* ...
+* `GET /api/addresses/:address`: Devuelve los detalles de una billetera.
+* `POST /api/transactions`: Procesa y crea una nueva transacción a partir de una carga útil firmada.
+* `GET /api/transactions/:uuid`: Devuelve los detalles de una transacción específica.
