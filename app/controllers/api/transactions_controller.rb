@@ -70,4 +70,23 @@ sender_address = SHA3::Digest.new(:sha3_256).hexdigest([sender_public_key].pack(
   rescue StandardError => e
     render json: { error: "Ocurrió un error al procesar la transacción: #{e.message}" }, status: :internal_server_error
   end
+
+   def show
+    # Busca la transacción en la base de datos usando el uuid de la URL
+    @transaction = Transaction.find_by(uuid: params[:uuid])
+    
+    # Si la encuentra, la devuelve como JSON
+    if @transaction
+      render json: {
+        uuid: @transaction.uuid,
+        from: @transaction.from_address,
+        to: @transaction.to_address,
+        amount: @transaction.amount / 1_000_000.0, # Convertimos a la unidad normal
+        nonce: @transaction.nonce
+      }, status: :ok
+    # Si no la encuentra, devuelve un error 404
+    else
+      render json: { error: 'Transacción no encontrada.' }, status: :not_found
+    end
+  end
 end
