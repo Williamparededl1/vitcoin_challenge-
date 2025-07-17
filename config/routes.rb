@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  namespace :api do
-    # Esta es la ruta correcta que necesitamos
-    get '/addresses/:address', to: 'addresses#show'
-  end
+
 
   namespace :api do
     get '/addresses/:address', to: 'addresses#show'
