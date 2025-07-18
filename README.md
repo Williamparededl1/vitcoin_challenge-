@@ -8,6 +8,7 @@ Esta es la implementación del reto técnico para Vita-Wallet, una API en Rails 
 * PostgreSQL `16.x`
 
 ## Instalación y Configuración
+> **Nota para usuarios de Windows:** Este proyecto fue desarrollado y probado en Windows usando WSL 2 (Windows Subsystem for Linux). Se recomienda seguir los pasos de configuración dentro de un entorno WSL para una compatibilidad óptima.
 
 1.  Clona el repositorio.
 2.  Asegúrate de tener Ruby 3.2.2 y PostgreSQL instalado y corriendo.
