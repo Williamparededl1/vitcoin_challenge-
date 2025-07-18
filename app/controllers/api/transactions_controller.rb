@@ -5,7 +5,7 @@ require 'sha3'
 class Api::TransactionsController < ApplicationController
   wrap_parameters false
 
-  MASTER_WALLET_ADDRESS = '0000000000000000000000000000000000000000000000000000000000000001'.freeze
+  MASTER_WALLET_ADDRESS = Rails.application.credentials.master_wallet_address
 
   def create
     signed_transaction = params[:signed_transaction]
